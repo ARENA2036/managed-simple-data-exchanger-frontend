@@ -27,6 +27,8 @@ import Sidebar from '../sidebar';
 export default function AppLayout(props: any) {
   useGetUseCasesQuery({});
   useGetPermissionsQuery({});
+  console.log(props)
+
 
   return (
     <Box sx={{ my: 0, mx: 'auto', overflowY: 'auto', overflowX: 'hidden', height: '100vh' }}>
