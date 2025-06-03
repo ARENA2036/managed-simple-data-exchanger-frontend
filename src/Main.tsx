@@ -31,7 +31,7 @@ export default function Main({ loggedUser }: Readonly<{ loggedUser: IUser }>) {
 
   return (
     <>
-       {/* {UserService.hasValidResource() ? (
+      {/* {UserService.hasValidResource() ? (
         <AppLayout loggedUser={loggedUser}>
           
           <Outlet />

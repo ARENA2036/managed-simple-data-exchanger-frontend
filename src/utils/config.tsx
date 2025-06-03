@@ -24,11 +24,10 @@ const envSettings = win._env_;
 
 export class Config {
   //static REACT_APP_API_URL = envSettings?.REACT_APP_API_URL;
-  static REACT_APP_API_URL = "https://sde-backend.e34eabb8a136438fafe9.germanywestcentral.aksapp.io"
+  static REACT_APP_API_URL = "http://localhost:8080/api"
 
   //static REACT_APP_FILESIZE = envSettings?.REACT_APP_FILESIZE;
-  static REACT_APP_FILESIZE = "100MiB"
-
+  static REACT_APP_FILESIZE = "104857600 " // 100 MB
   //static REACT_APP_DEFAULT_COMPANY_BPN=
   static REACT_APP_DEFAULT_COMPANY_BPN = "BPNL00000003CRHK"
 
