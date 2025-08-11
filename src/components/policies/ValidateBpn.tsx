@@ -38,7 +38,7 @@ import { Controller, useFieldArray } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuid } from 'uuid';
 
-import { setFfilterCompanyOptionsLoading, setFilterCompanyOptions } from '../../features/consumer/slice';
+import { setFilterCompanyOptionsLoading, setFilterCompanyOptions } from '../../features/consumer/slice';
 import { ILegalEntityContent, IntOption } from '../../features/consumer/types';
 import { setSnackbarMessage } from '../../features/notifiication/slice';
 import { useValidateBpnMutation } from '../../features/provider/policies/apiSlice';
@@ -102,9 +102,9 @@ function ValidateBpn({ control, resetField, getValues, setValue, inputBpn }: any
     if (searchStr.length > 2) {
       setSearchPopup(true);
       dispatch(setFilterCompanyOptions([]));
-      dispatch(setFfilterCompanyOptionsLoading(true));
+      dispatch(setFilterCompanyOptionsLoading(true));
       const res: [] = await ConsumerService.getInstance().searchLegalEntities(searchStr);
-      dispatch(setFfilterCompanyOptionsLoading(false));
+      dispatch(setFilterCompanyOptionsLoading(false));
       if (res.length > 0) {
         const filterContent = res.map((item: ILegalEntityContent, index) => {
           return {

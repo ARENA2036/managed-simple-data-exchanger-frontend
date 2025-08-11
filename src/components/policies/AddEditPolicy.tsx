@@ -23,6 +23,7 @@ import { Dialog, DialogContent, DialogHeader, Typography } from '@catena-x/porta
 import { useTranslation } from 'react-i18next';
 
 import { uploadFileWithPolicy, uploadTableWithPolicy } from '../../features/provider/policies/actions';
+import { useCreatePolicyMutation } from '../../features/provider/policies/apiSlice';
 import { setPolicyDialog } from '../../features/provider/policies/slice';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import PolicyHub from '../../pages/PolicyHub';
@@ -31,6 +32,7 @@ function AddEditPolicyNew() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { policyDialog, policyDialogType } = useAppSelector(state => state.policySlice);
+  const [createPolicy] = useCreatePolicyMutation();
 
   const onSubmit = async (formData: any) => {
     try {
@@ -42,7 +44,9 @@ function AddEditPolicyNew() {
           await dispatch(uploadTableWithPolicy(formData));
           break;
         default:
+           await createPolicy(formData).unwrap();
           break;
+         
       }
     } catch (error) {
       console.log(error);
