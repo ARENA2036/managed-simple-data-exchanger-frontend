@@ -35,7 +35,7 @@ export class Config {
   static REACT_APP_CLIENT_ID = "CX-SDE"
 
   //static REACT_APP_KEYCLOAK_URL = envSettings?.REACT_APP_KEYCLOAK_URL;
-  static REACT_APP_KEYCLOAK_URL = "https://centralidp.e34eabb8a136438fafe9.germanywestcentral.aksapp.io/auth"
+  static REACT_APP_KEYCLOAK_URL = "https://centralidp.arena2036-x.de/auth"
 
   // static REACT_APP_KEYCLOAK_REALM = envSettings?.REACT_APP_KEYCLOAK_REALM;
   static REACT_APP_KEYCLOAK_REALM = "CX-Central"

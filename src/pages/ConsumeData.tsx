@@ -50,7 +50,7 @@ import Permissions from '../components/Permissions';
 import { useGetOfferPolicyDetailsMutation } from '../features/consumer/apiSlice';
 import {
   setContractOffers,
-  setFfilterCompanyOptionsLoading,
+  setFilterCompanyOptionsLoading,
   setFilterCompanyOptions,
   setFilterConnectors,
   setFilterProviderUrl,
@@ -205,23 +205,44 @@ export default function ConsumeData() {
     try {
       let providerUrl = '';
       if (searchFilterByType.value === 'company' || searchFilterByType.value === 'bpn') {
-        providerUrl = filterSelectedConnector.value;
+        providerUrl = filterSelectedConnector?.value || '';
       } else {
         providerUrl = filterProviderUrl;
       }
-      if (providerUrl == '' || providerUrl == null) {
-        return true;
+
+      if (!providerUrl) {
+        dispatch(setSnackbarMessage({ message: 'Please select a connector', type: 'error' }));
+        return;
       }
+
       dispatch(setOffersLoading(true));
-      const response = await ConsumerService.getInstance().fetchConsumerDataOffers({
-        providerUrl: providerUrl,
+
+      // Prepare query params
+      const params: Record<string, any> = {
+        providerUrl: encodeURIComponent(providerUrl),
         offset: 0,
-        maxLimit: MAX_CONTRACTS_AGREEMENTS,
-      });
+        maxLimit: MAX_CONTRACTS_AGREEMENTS
+      };
+
+      // Add BPN if available (from either direct input or company search)
+      if (filterSelectedBPN) {
+        params.bpnNumber = filterSelectedBPN;
+      }
+      // If you have manufacturerPartId available from somewhere, add it here:
+      // else if (manufacturerPartId) {
+      //   params.manufacturerPartId = manufacturerPartId;
+      // }
+      else {
+        dispatch(setSnackbarMessage({ message: 'Please provide either BPN or search for a company', type: 'error' }));
+        return;
+      }
+
+      const response = await ConsumerService.getInstance().fetchConsumerDataOffers(params);
       dispatch(setContractOffers(response.data));
-      dispatch(setOffersLoading(false));
     } catch (error) {
       dispatch(setContractOffers([]));
+      dispatch(setSnackbarMessage({ message: 'Failed to fetch offers', type: 'error' }));
+    } finally {
       dispatch(setOffersLoading(false));
     }
   };
@@ -282,9 +303,9 @@ export default function ConsumeData() {
       if (open) setSearchOpen(true);
       dispatch(setFilterCompanyOptions([]));
       dispatch(setFilterSelectedConnector(null));
-      dispatch(setFfilterCompanyOptionsLoading(true));
+      dispatch(setFilterCompanyOptionsLoading(true));
       const res: [] = await ConsumerService.getInstance().searchLegalEntities(searchStr);
-      dispatch(setFfilterCompanyOptionsLoading(false));
+      dispatch(setFilterCompanyOptionsLoading(false));
       if (res.length > 0) {
         const filterContent = res.map((item: ILegalEntityContent, index) => {
           return {
