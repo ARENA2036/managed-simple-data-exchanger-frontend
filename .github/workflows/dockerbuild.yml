@@ -23,7 +23,6 @@ on:
   push:
     branches:
       - 'main'
-      - 'dockerbuild-workflow'
       - 'sde-bugfix'
     tags:
       - 'v*.*.*'
@@ -91,7 +90,7 @@ jobs:
           # push: ${{ github.event_name != 'pull_request' }}
           # tags: ${{ steps.meta.outputs.tags }}
           push: true
-          tags: ${{ steps.meta.outputs.tags }}, ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest
+          tags: ${{ steps.meta.outputs.tags }}, ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest-v1
           labels: ${{ steps.meta.outputs.labels }}
 
       #   # https://github.com/peter-evans/dockerhub-description
