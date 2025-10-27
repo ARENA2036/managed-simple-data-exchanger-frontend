@@ -19,7 +19,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CustomAccordion, Tab, TabPanel, Tabs, Typography } from '@catena-x/portal-shared-components';
+import { CustomAccordion, Tab, TabPanel, Tabs, Typography } from '@arena2036/portal-shared-components-arena-x';
 import { Box, Grid } from '@mui/material';
 import { isEmpty } from 'lodash';
 import { SyntheticEvent, useState } from 'react';

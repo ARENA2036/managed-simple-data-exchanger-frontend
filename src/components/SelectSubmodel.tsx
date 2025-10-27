@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { SelectList } from '@catena-x/portal-shared-components';
+import { SelectList } from '@arena2036/portal-shared-components-arena-x';
 import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -34,9 +34,18 @@ const SelectSubmodel = () => {
   const { t } = useTranslation();
 
   const handleTypeChange = useCallback(
-    async (item: ISubmodelList) => {
-      dispatch(setSelectedSubmodel(item));
-      dispatch(fetchSubmodelDetails(item.value));
+    async (item: any) => {
+      // normalize Option (from SelectList) to ISubmodelList
+      const normalized: ISubmodelList = item && 'id' in item && 'title' in item && 'value' in item
+        ? item
+        : {
+            id: item?.value ?? '',
+            title: item?.label ?? item?.value ?? '',
+            value: item?.value ?? '',
+          };
+
+      dispatch(setSelectedSubmodel(normalized));
+      dispatch(fetchSubmodelDetails(normalized.value));
       // clearing the selected files and rows
       dispatch(clearRows());
       dispatch(removeSelectedFiles());

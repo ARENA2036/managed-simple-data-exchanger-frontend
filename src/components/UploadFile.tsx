@@ -18,7 +18,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { Button, DropArea, DropPreview, UploadStatus } from '@catena-x/portal-shared-components';
+import { Button, DropArea, DropPreview, UploadStatus } from '@arena2036/portal-shared-components-arena-x';
 import { Box } from '@mui/material';
 import { isEqual } from 'lodash';
 import { FileRejection, useDropzone } from 'react-dropzone';

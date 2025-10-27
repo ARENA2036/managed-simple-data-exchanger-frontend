@@ -21,7 +21,7 @@
 
 import './styles/index.scss';
 
-import { SharedCssBaseline, SharedThemeProvider } from '@catena-x/portal-shared-components';
+import { SharedCssBaseline, SharedThemeProvider } from '@arena2036/portal-shared-components-arena-x';
 import { ThemeProvider } from '@emotion/react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';

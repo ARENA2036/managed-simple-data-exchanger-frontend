@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { Button } from '@catena-x/portal-shared-components';
+import { Button } from '@arena2036/portal-shared-components-arena-x';
 import { Box } from '@mui/material';
 import { DataGrid, GridCellEditCommitParams, GridRowId } from '@mui/x-data-grid';
 import { useTranslation } from 'react-i18next';

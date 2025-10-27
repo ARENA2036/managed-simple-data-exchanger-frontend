@@ -28,7 +28,7 @@ import {
   LoadingButton,
   SelectList,
   Typography,
-} from '@catena-x/portal-shared-components';
+} from '@arena2036/portal-shared-components-arena-x';
 import { Autocomplete, Box, Grid, LinearProgress } from '@mui/material';
 import {
   DataGrid,
@@ -172,6 +172,8 @@ export default function ConsumeData() {
     return {
       offers: offersList,
       usage_policies: selectedList[0].policy.Usage,
+      downloadDataAs: 'zip',
+      
     };
   };
 
@@ -190,9 +192,20 @@ export default function ConsumeData() {
 
       const response = await ConsumerService.getInstance().subscribeToOffers(preparePayload());
 
-      if (response.status === 200) {
+      if (response && response.status === 200) {
+
+        const blob = new Blob([response.data], { type: 'application/zip' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'data-offers.zip';
+        a.click();
+        window.URL.revokeObjectURL(url);
+
         dispatch(setSnackbarMessage({ message: 'alerts.subscriptionSuccess', type: 'success' }));
         handleSuccess();
+      } else {
+        dispatch(setSnackbarMessage({ message: 'Failed to download offers', type: 'error' }));
       }
     } catch (e) {
       console.log(e);
@@ -323,8 +336,9 @@ export default function ConsumeData() {
   };
 
   // on change search type filter option
-  const handleSearchTypeChange = (value: IntConnectorItem) => {
-    dispatch(setSearchFilterByType(value));
+  const handleSearchTypeChange = (value: any) => {
+    const selectedValue = value as IntConnectorItem;
+    dispatch(setSearchFilterByType(selectedValue));
     dispatch(setSelectedFilterCompanyOption(null));
     dispatch(setFilterProviderUrl(''));
     dispatch(setFilterSelectedBPN(''));
@@ -536,7 +550,7 @@ export default function ConsumeData() {
                   placeholder={t('content.consumeData.selectConnectors')}
                   noOptionsText={t('content.consumeData.noConnectors')}
                   defaultValue={filterSelectedConnector}
-                  onChangeItem={e => dispatch(setFilterSelectedConnector(e))}
+                  onChangeItem={e => dispatch(setFilterSelectedConnector(e as IntConnectorItem | null))}
                   items={filterConnectors}
                 />
               </Grid>

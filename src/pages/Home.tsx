@@ -20,7 +20,7 @@
 
 import '../styles/home.scss';
 
-import { Button, Checkbox, Tab, TabPanel, Tabs, Typography } from '@catena-x/portal-shared-components';
+import { Button, Checkbox, Tab, TabPanel, Tabs, Typography } from '@arena2036/portal-shared-components-arena-x';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Avatar, Box, FormControlLabel, Grid } from '@mui/material';

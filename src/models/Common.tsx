@@ -21,8 +21,12 @@
 interface IDefaultObject {
   [key: string]: string;
 }
+interface Option {
+  [key: string]: any;
+}
 
-interface ISelectList {
+
+interface ISelectList extends Option {
   id: number;
   title: string;
   value: string;

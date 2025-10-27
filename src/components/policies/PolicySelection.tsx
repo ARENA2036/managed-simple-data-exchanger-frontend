@@ -19,7 +19,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { SelectList } from '@catena-x/portal-shared-components';
+import { SelectList } from '@arena2036/portal-shared-components-arena-x';
 import { Box, FormControl } from '@mui/material';
 import { useEffect, useState } from 'react';
 
@@ -76,6 +76,22 @@ function PolicySelection({ data }: Readonly<{ data: PolicyHubResponse[] }>) {
     }
   };
 
+  // wrapper to adapt the library Option shape to ISelectList without changing the async handler signature
+  const handleOptionChange = (items: any) => {
+    const item: ISelectList = {
+      id: items?.id ?? items?.value ?? '',
+      title: items?.title ?? items?.label ?? String(items?.value ?? ''),
+      value:
+        items?.value === 'NEW'
+          ? 'NEW'
+          : items?.value === 'EXISTING'
+          ? 'EXISTING'
+          : // fallback to EXISTING to match existing behavior
+            'EXISTING',
+    };
+    void handlePolicySelection(item);
+  };
+
   if (showPolicySelection) {
     return (
       <Box>
@@ -89,7 +105,7 @@ function PolicySelection({ data }: Readonly<{ data: PolicyHubResponse[] }>) {
             placeholder="Select a value"
             type={'text'}
             disableClearable={true}
-            onChangeItem={handlePolicySelection}
+            onChangeItem={handleOptionChange}
           />
         </FormControl>
       </Box>
