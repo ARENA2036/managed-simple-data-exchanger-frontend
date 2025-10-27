@@ -30,7 +30,7 @@ import {
   LoadingButton,
   SelectList,
   Typography,
-} from '@catena-x/portal-shared-components';
+} from '@arena2036/portal-shared-components-arena-x';
 import { Autocomplete, Box, FormControl, Grid, Stack } from '@mui/material';
 import { debounce, inRange, isEmpty, uniq } from 'lodash';
 import { useEffect, useState } from 'react';
@@ -130,8 +130,8 @@ function ValidateBpn({ control, resetField, getValues, setValue, inputBpn }: any
             label={t('content.consumeData.selectType')}
             fullWidth
             size="small"
-            onChangeItem={e => {
-              setSelectType(e);
+            onChangeItem={e  => {
+              setSelectType(e as { id: number; title: string; value: string });
               resetField('inputBpn', { defaultValue: '' });
             }}
             items={BPN_TYPE_FIELDS}

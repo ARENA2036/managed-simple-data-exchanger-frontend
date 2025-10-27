@@ -23,8 +23,8 @@ $colors: (
   black: #000000,
   white: #ffffff,
   // primary
-  primary: #0f71cb,
-  primary-hover: #017ab0,
+  primary: #c26209,
+  primary-hover: #b34d0a,
   // backgrounds
   background01: #f3f3f3,
   // action
@@ -36,7 +36,7 @@ $colors: (
   text-secondary: #252525,
   text-tertiary: #888888,
   text-quaternary: #a2a2a2,
-  text-quinary: #2962ba
+  text-quinary: #e68911
 );
 
 @function color($key) {

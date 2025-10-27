@@ -105,8 +105,11 @@ export interface IContractAgreements {
   dateCreated: number;
   dateUpdated: number;
 }
+interface Option {
+  [key: string]: any;
+}
 
-export interface IntConnectorItem {
+export interface IntConnectorItem extends Option{
   id: number;
   value: string;
   title: string;

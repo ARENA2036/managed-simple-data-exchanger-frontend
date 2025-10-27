@@ -46,6 +46,7 @@ class ConsumerService extends HttpService {
     const res = await this.instance({
       method: 'POST',
       url: '/subscribe-data-offers',
+      responseType: 'blob',
       data: offers,
     });
     return res;

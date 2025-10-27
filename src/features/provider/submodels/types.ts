@@ -20,7 +20,11 @@
 
 import { GridColDef, GridSelectionModel, GridValidRowModel } from '@mui/x-data-grid';
 
-export interface ISubmodelList {
+interface Option {
+  [key: string]: any;
+}
+
+export interface ISubmodelList extends Option {
   id: number;
   title: string;
   value: string;

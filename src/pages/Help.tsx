@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, IconButton, Table, Tooltips, Typography } from '@catena-x/portal-shared-components';
+import { Button, IconButton, Table, Tooltips, Typography } from '@arena2036/portal-shared-components-arena-x';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import InfoIcon from '@mui/icons-material/Info';
 import { Box, Card, CardContent, Grid } from '@mui/material';

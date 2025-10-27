@@ -26,6 +26,7 @@
     ]
   },
   "dependencies": {
+    "@arena2036/portal-shared-components-arena-x": "^0.0.7",
     "@catena-x/portal-shared-components": "^3.0.25",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
@@ -41,7 +42,7 @@
     "file-saver": "^2.0.5",
     "i18next": "^23.11.1",
     "i18next-browser-languagedetector": "^8.0.0",
-    "keycloak-js": "^24.0.4",
+    "keycloak-js": "^24.0.5",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "react": "^18.2.0",
@@ -86,7 +87,7 @@
     "vitest": "^1.4.0"
   },
   "scripts": {
-    "start": "vite --host --port 3000",
+    "start": "vite dev --host --port 3000",
     "build": "tsc && vite build",
     "preview": "vite preview --host --port 3000",
     "test": "vitest",
