@@ -28,7 +28,7 @@ import {
   LoadingButton,
   SelectList,
   Typography,
-} from '@arena2036/portal-shared-components-arena-x';
+} from '@catena-x/portal-shared-components';
 import { Autocomplete, Box, Grid, LinearProgress } from '@mui/material';
 import {
   DataGrid,

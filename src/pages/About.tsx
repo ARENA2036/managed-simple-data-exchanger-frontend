@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { AboutCard, Typography } from '@arena2036/portal-shared-components-arena-x';
+import { AboutCard, Typography } from '@catena-x/portal-shared-components';
 import { t } from 'i18next';
 
 import aboutContent from '../assets/about/legal-notice.json';

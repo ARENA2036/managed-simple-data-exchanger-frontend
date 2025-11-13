@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@arena2036/portal-shared-components-arena-x';
+import { Typography } from '@catena-x/portal-shared-components';
 import { Backdrop, CircularProgress } from '@mui/material';
 
 import { useAppSelector } from '../features/store';

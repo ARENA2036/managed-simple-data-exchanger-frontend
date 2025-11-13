@@ -19,7 +19,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Dialog, DialogContent, DialogHeader, Typography } from '@arena2036/portal-shared-components-arena-x';
+import { Dialog, DialogContent, DialogHeader, Typography } from '@catena-x/portal-shared-components';
 import { useTranslation } from 'react-i18next';
 
 import { uploadFileWithPolicy, uploadTableWithPolicy } from '../../features/provider/policies/actions';

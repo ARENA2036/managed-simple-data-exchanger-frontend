@@ -19,7 +19,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { SelectList } from '@arena2036/portal-shared-components-arena-x';
+import { SelectList } from '@catena-x/portal-shared-components';
 import { Box, FormControl } from '@mui/material';
 import { useEffect, useState } from 'react';
 

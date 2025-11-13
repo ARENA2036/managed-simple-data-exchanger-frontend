@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { IconButton, LoadingButton, Tooltips, Typography } from '@arena2036/portal-shared-components-arena-x';
+import { IconButton, LoadingButton, Tooltips, Typography } from '@catena-x/portal-shared-components';
 import { Refresh } from '@mui/icons-material';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Box, Grid, LinearProgress } from '@mui/material';

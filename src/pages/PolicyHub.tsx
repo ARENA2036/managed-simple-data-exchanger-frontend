@@ -19,7 +19,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Input, SelectList, Tab, TabPanel, Tabs } from '@arena2036/portal-shared-components-arena-x';
+import { Input, SelectList, Tab, TabPanel, Tabs } from '@catena-x/portal-shared-components';
 import { Box, Button, FormControl, Grid } from '@mui/material';
 import { isArray, keys, pickBy } from 'lodash';
 import { SyntheticEvent, useEffect, useState } from 'react';

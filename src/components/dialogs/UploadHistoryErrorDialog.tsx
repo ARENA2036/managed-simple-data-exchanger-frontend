@@ -26,7 +26,7 @@ import {
   DialogHeader,
   Tooltips,
   Typography,
-} from '@arena2036/portal-shared-components-arena-x';
+} from '@catena-x/portal-shared-components';
 import { Box, Grid } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import React, { useState } from 'react';
