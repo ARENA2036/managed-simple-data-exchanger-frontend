@@ -33,27 +33,34 @@ export const helpApiSlice = apiSlice.injectEndpoints({
       },
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       transformResponse: (response: any[]) => {
-        const pageData = response.map(submodel => {
+        if (!Array.isArray(response)) return [];
+
+        return response.map(submodel => {
+          const properties = submodel?.items?.properties ?? {};
+          const required = submodel?.items?.required ?? [];
+
           return {
             name: `${submodel.title} - ${submodel.version}`,
             description: submodel.description,
             id: submodel.id,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            rows: Object.entries(submodel.items.properties).map(([key, value]: any, index) => ({
+            rows: Object.entries(properties).map(([key, value]: any, index) => ({
               id: index,
               name: key,
-              mandatory: indexOf(submodel.items.required, key) > -1 ? 'true' : 'false',
+              mandatory: required.includes(key) ? "true" : "false",
               order: index + 1,
-              description: value.description,
+              description: value?.description ?? "",
             })),
           };
         });
-        return pageData;
       },
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        dispatch(setPageLoading(true));
+
         try {
-          dispatch(setPageLoading(true));
           await queryFulfilled;
+        } catch (err) {
+          console.error("getHelpPageData error:", err);
+          return;
         } finally {
           dispatch(setPageLoading(false));
         }

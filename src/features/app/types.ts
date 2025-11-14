@@ -47,7 +47,8 @@ export interface IExtraOptions {
 }
 
 export class UseCaseSelectionModel {
-  static create(useCase: IUseCase[]) {
+  static create(useCase: IUseCase[] | undefined | null) {
+    if (!Array.isArray(useCase)) return [];
     return useCase.map(item => {
       return { id: item.id, title: item.title, checked: false };
     });
