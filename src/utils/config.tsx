@@ -23,22 +23,11 @@ const win = window as any;
 const envSettings = win._env_;
 
 export class Config {
-  //static REACT_APP_API_URL = envSettings?.REACT_APP_API_URL;
-  static REACT_APP_API_URL = "https://sde-backend.arena2036-x.de/api"
-
-  //static REACT_APP_FILESIZE = envSettings?.REACT_APP_FILESIZE;
-  static REACT_APP_FILESIZE = "104857600 " // 100 MB
-  //static REACT_APP_DEFAULT_COMPANY_BPN=
-  static REACT_APP_DEFAULT_COMPANY_BPN = "BPNL00000003CRHK"
-
-//  static REACT_APP_CLIENT_ID = envSettings?.REACT_APP_CLIENT_ID;
-  static REACT_APP_CLIENT_ID = "CX-SDE"
-
-  //static REACT_APP_KEYCLOAK_URL = envSettings?.REACT_APP_KEYCLOAK_URL;
-  static REACT_APP_KEYCLOAK_URL = "https://centralidp.arena2036-x.de/auth"
-
-  // static REACT_APP_KEYCLOAK_REALM = envSettings?.REACT_APP_KEYCLOAK_REALM;
-  static REACT_APP_KEYCLOAK_REALM = "CX-Central"
-
+  static REACT_APP_API_URL = envSettings?.REACT_APP_API_URL;
+  static REACT_APP_FILESIZE = envSettings?.REACT_APP_FILESIZE;
+  static REACT_APP_DEFAULT_COMPANY_BPN= envSettings?.REACT_APP_DEFAULT_COMPANY_BPN;
+  static REACT_APP_CLIENT_ID = envSettings?.REACT_APP_CLIENT_ID;
+  static REACT_APP_KEYCLOAK_URL = envSettings?.REACT_APP_KEYCLOAK_URL;
+  static REACT_APP_KEYCLOAK_REALM = envSettings?.REACT_APP_KEYCLOAK_REALM;
   
 }
