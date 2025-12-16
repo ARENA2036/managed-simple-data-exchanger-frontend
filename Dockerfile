@@ -1,6 +1,8 @@
 #################################################################################
 # Copyright (c) 2021,2022,2023 T-Systems International GmbH
 # Copyright (c) 2021,2022,2023 Contributors to the Eclipse Foundation
+# Copyright (c) 2025 ARENA2036 e.V.
+
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -18,7 +20,7 @@
 # SPDX-License-Identifier: Apache-2.0
 ################################################################################
 # => Build container
-FROM node:18.20.4-alpine3.20 as builder
+FROM node:18.20.4-alpine3.20 AS builder
 
 WORKDIR /app
 
