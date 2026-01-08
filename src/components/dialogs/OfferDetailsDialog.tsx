@@ -26,7 +26,7 @@ import {
   DialogContent,
   DialogHeader,
   Typography,
-} from '@catena-x/portal-shared-components';
+} from '@arena2036/portal-shared-components-arena-x';
 import { Divider, Grid } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 

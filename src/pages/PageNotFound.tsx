@@ -19,7 +19,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ErrorPage } from '@catena-x/portal-shared-components';
+import { ErrorPage } from '@arena2036/portal-shared-components-arena-x';
 import { useNavigate } from 'react-router-dom';
 
 export default function PageNotFound() {

@@ -26,7 +26,7 @@ import {
   DialogContent,
   DialogHeader,
   LoadingButton,
-} from '@catena-x/portal-shared-components';
+} from '@arena2036/portal-shared-components-arena-x';
 import { Box, Checkbox, FormControlLabel } from '@mui/material';
 import React, { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';

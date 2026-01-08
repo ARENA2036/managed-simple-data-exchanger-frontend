@@ -3,6 +3,7 @@
  * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
  * Copyright (c) 2025 ARENA2036 e.V.
  * 
+ *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
  *
@@ -26,7 +27,7 @@ const envSettings = win._env_;
 export class Config {
   static REACT_APP_API_URL = envSettings?.REACT_APP_API_URL;
   static REACT_APP_FILESIZE = envSettings?.REACT_APP_FILESIZE;
-  static REACT_APP_DEFAULT_COMPANY_BPN = envSettings?.REACT_APP_DEFAULT_COMPANY_BPN;
+  static REACT_APP_DEFAULT_COMPANY_BPN= envSettings?.REACT_APP_DEFAULT_COMPANY_BPN;
   static REACT_APP_CLIENT_ID = envSettings?.REACT_APP_CLIENT_ID;
   static REACT_APP_KEYCLOAK_URL = envSettings?.REACT_APP_KEYCLOAK_URL;
   static REACT_APP_KEYCLOAK_REALM = envSettings?.REACT_APP_KEYCLOAK_REALM;

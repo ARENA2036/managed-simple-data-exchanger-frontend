@@ -19,7 +19,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { theme as CxTheme } from '@catena-x/portal-shared-components';
+import { theme as CxTheme } from '@arena2036/portal-shared-components-arena-x';
 import { createTheme } from '@mui/material/styles';
 import { merge } from 'lodash';
 

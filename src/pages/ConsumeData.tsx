@@ -29,7 +29,7 @@ import {
   LoadingButton,
   SelectList,
   Typography,
-} from '@catena-x/portal-shared-components';
+} from '@arena2036/portal-shared-components-arena-x';
 import { Autocomplete, Box, Grid, LinearProgress } from '@mui/material';
 import {
   DataGrid,
@@ -242,7 +242,10 @@ export default function ConsumeData() {
       if (filterSelectedBPN) {
         params.bpnNumber = filterSelectedBPN;
       }
-    
+      // If you have manufacturerPartId available from somewhere, add it here:
+      // else if (manufacturerPartId) {
+      //   params.manufacturerPartId = manufacturerPartId;
+      // }
       else {
         dispatch(setSnackbarMessage({ message: 'Please provide either BPN or search for a company', type: 'error' }));
         return;
@@ -598,7 +601,7 @@ export default function ConsumeData() {
             rowsPerPageOptions={[10, 25, 50, 100]}
             onSelectionModelChange={newSelectionModel => handleSelectionModel(newSelectionModel)}
             selectionModel={selectionModel}
-            isRowSelectable={params => params.row.type !== 'PCFExchangeEndpoint'}
+            isRowSelectable={params => params.row.type !== 'PCFExchangeEndpot'}
             components={{
               Toolbar: GridToolbar,
               LoadingOverlay: LinearProgress,

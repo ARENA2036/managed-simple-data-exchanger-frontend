@@ -19,7 +19,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { theme } from '@catena-x/portal-shared-components';
+import { theme } from '@arena2036/portal-shared-components-arena-x';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import { ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';

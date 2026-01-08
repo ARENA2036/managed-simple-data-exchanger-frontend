@@ -19,7 +19,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Tooltips, Typography } from '@catena-x/portal-shared-components';
+import { Tooltips, Typography } from '@arena2036/portal-shared-components-arena-x';
 import InfoIcon from '@mui/icons-material/Info';
 import { Box } from '@mui/material';
 import { isEmpty } from 'lodash';
