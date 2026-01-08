@@ -20,7 +20,7 @@
  ********************************************************************************/
 import '../styles/submodelDetails.scss';
 
-import { Tooltips } from '@arena2036/portal-shared-components-arena-x';
+import { Tooltips } from '@catena-x/portal-shared-components';
 import InfoIcon from '@mui/icons-material/Info';
 import { Box } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';

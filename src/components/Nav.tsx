@@ -20,7 +20,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, LanguageSwitch, Typography, UserAvatar, UserMenu, UserNav } from '@arena2036/portal-shared-components-arena-x';
+import { Button, LanguageSwitch, Typography, UserAvatar, UserMenu, UserNav } from '@catena-x/portal-shared-components';
 import { Box, Divider, Paper, useTheme } from '@mui/material';
 import i18next, { changeLanguage } from 'i18next';
 import { useRef, useState } from 'react';
