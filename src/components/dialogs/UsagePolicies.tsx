@@ -19,7 +19,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@arena2036/portal-shared-components-arena-x';
+import { Typography } from '@catena-x/portal-shared-components';
 import { Grid } from '@mui/material';
 import { isEmpty } from 'lodash';
 import { Key } from 'react';
