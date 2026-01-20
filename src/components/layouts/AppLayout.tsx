@@ -28,7 +28,7 @@ import Sidebar from '../sidebar';
 export default function AppLayout(props: any) {
   useGetUseCasesQuery({});
   useGetPermissionsQuery({});
-  console.log(props)
+
 
 
   return (

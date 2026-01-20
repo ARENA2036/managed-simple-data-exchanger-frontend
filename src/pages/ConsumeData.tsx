@@ -231,21 +231,16 @@ export default function ConsumeData() {
 
       dispatch(setOffersLoading(true));
 
-      // Prepare query params
+
       const params: Record<string, any> = {
         providerUrl: encodeURIComponent(providerUrl),
         offset: 0,
         maxLimit: MAX_CONTRACTS_AGREEMENTS
       };
-
-      // Add BPN if available (from either direct input or company search)
+     
       if (filterSelectedBPN) {
         params.bpnNumber = filterSelectedBPN;
       }
-      // If you have manufacturerPartId available from somewhere, add it here:
-      // else if (manufacturerPartId) {
-      //   params.manufacturerPartId = manufacturerPartId;
-      // }
       else {
         dispatch(setSnackbarMessage({ message: 'Please provide either BPN or search for a company', type: 'error' }));
         return;
@@ -261,7 +256,6 @@ export default function ConsumeData() {
     }
   };
 
-  // enter key fetch data
   const handleKeypress = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (['Enter', 'NumpadEnter'].includes(e.key)) {
       await fetchConsumerDataOffers();

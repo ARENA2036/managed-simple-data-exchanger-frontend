@@ -32,14 +32,14 @@ export default function Main({ loggedUser }: Readonly<{ loggedUser: IUser }>) {
 
   return (
     <>
-      {/* {UserService.hasValidResource() ? (
+      {UserService.hasValidResource() ? (
         <AppLayout loggedUser={loggedUser}>
           
           <Outlet />
         </AppLayout>
       ) : (
        <ErrorPage header="This webpage is not available." title="Sorry for this inconvenience." />
-      )} */}
+      )}
        <AppLayout loggedUser={loggedUser}>
           
           <Outlet />
