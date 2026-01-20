@@ -28,7 +28,6 @@ import UserService from './services/UserService';
 
 export default function Main({ loggedUser }: Readonly<{ loggedUser: IUser }>) {
   document.title = useTranslation().t('title');
-  console.log(loggedUser)
 
   return (
     <>
