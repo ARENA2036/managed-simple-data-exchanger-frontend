@@ -601,7 +601,7 @@ export default function ConsumeData() {
             rowsPerPageOptions={[10, 25, 50, 100]}
             onSelectionModelChange={newSelectionModel => handleSelectionModel(newSelectionModel)}
             selectionModel={selectionModel}
-            isRowSelectable={params => params.row.type !== 'PCFExchangeEndpot'}
+            isRowSelectable={params => params.row.type !== 'PCFExchangeEndpoint'}
             components={{
               Toolbar: GridToolbar,
               LoadingOverlay: LinearProgress,
