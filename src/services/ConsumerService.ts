@@ -42,10 +42,10 @@ class ConsumerService extends HttpService {
     return res;
   }
 
-  public async subscribeToOffers(offers: unknown) {
+  public async subscribeToOffersAndDownload(offers: unknown) {
     const res = await this.instance({
       method: 'POST',
-      url: '/subscribe-data-offers',
+      url: '/subscribe-download-data-offers',
       responseType: 'blob',
       data: offers,
     });

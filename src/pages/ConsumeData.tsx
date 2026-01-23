@@ -190,7 +190,7 @@ export default function ConsumeData() {
         setSelectionModel([]);
       };
 
-      const response = await ConsumerService.getInstance().subscribeToOffers(preparePayload());
+      const response = await ConsumerService.getInstance().subscribeToOffersAndDownload(preparePayload());
 
       if (response && response.status === 200) {
 
