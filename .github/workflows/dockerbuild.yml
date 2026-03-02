@@ -82,6 +82,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          platforms: linux/amd64, linux/arm64
           file: ./Dockerfile
           # Build image for verification purposes on every trigger event. Only push if event is not a PR
           push: ${{ github.event_name != 'pull_request' }}
