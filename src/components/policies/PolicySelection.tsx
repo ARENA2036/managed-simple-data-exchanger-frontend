@@ -80,7 +80,7 @@ function PolicySelection({ data }: Readonly<{ data: PolicyHubResponse[] }>) {
   // wrapper to adapt the library Option shape to ISelectList without changing the async handler signature
   const handleOptionChange = (items: any) => {
     const item: ISelectList = {
-      id: items?.id ?? items?.value ?? '',
+      id: items?.id ?? items?.value,
       title: items?.title ?? items?.label ?? String(items?.value ?? ''),
       value:
         items?.value === 'NEW'
