@@ -24,7 +24,7 @@ import { Dialog, DialogContent, DialogHeader, Typography } from '@catena-x/porta
 import { useTranslation } from 'react-i18next';
 
 import { uploadFileWithPolicy, uploadTableWithPolicy } from '../../features/provider/policies/actions';
-import { useCreatePolicyMutation } from '../../features/provider/policies/apiSlice';
+import { useCreatePolicyMutation, useUpdatePolicyMutation  } from '../../features/provider/policies/apiSlice';
 import { setPolicyDialog } from '../../features/provider/policies/slice';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import PolicyHub from '../../pages/PolicyHub';
@@ -32,8 +32,9 @@ import PolicyHub from '../../pages/PolicyHub';
 function AddEditPolicyNew() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { policyDialog, policyDialogType } = useAppSelector(state => state.policySlice);
+  const { policyDialog, policyDialogType, selectedPolicy } = useAppSelector(state => state.policySlice);
   const [createPolicy] = useCreatePolicyMutation();
+  const [updatePolicy] = useUpdatePolicyMutation();
 
   const onSubmit = async (formData: any) => {
     try {
@@ -44,9 +45,24 @@ function AddEditPolicyNew() {
         case 'TableWithPolicy':
           await dispatch(uploadTableWithPolicy(formData));
           break;
+         case 'Add':
+        await createPolicy(formData).unwrap();
+        break;
+          case 'Edit':
+        if (!selectedPolicy?.uuid) {
+          console.error('Missing UUID for update');
+          return;
+        }
+
+        await updatePolicy({
+          ...formData,
+          uuid: selectedPolicy.uuid,
+        }).unwrap();
+        break;
+
         default:
-           await createPolicy(formData).unwrap();
-          break;
+        console.error('Unhandled policyDialogType:', policyDialogType);
+        return;
          
       }
     } catch (error) {

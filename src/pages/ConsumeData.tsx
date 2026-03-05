@@ -169,6 +169,7 @@ export default function ConsumeData() {
       offerId: offer.offerId || '',
       assetId: offer.assetId || '',
       policyId: offer.policyId || '',
+      hasPolicy: offer.hasPolicy || '',
     }));
     return {
       offers: offersList,
@@ -191,22 +192,23 @@ export default function ConsumeData() {
         setSelectionModel([]);
       };
 
-      const response = await ConsumerService.getInstance().subscribeToOffers(preparePayload());
+      const response = await ConsumerService.getInstance().subscribeToOffersAndDownload(preparePayload());
 
       if (response && response.status === 200) {
 
-        const blob = new Blob([response.data], { type: 'application/zip' });
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'data-offers.zip';
-        a.click();
-        window.URL.revokeObjectURL(url);
+        const downloadUrl = window.URL.createObjectURL(response.data);
+        const downloadLink = document.createElement('a');
+        downloadLink.href = downloadUrl;
+        downloadLink.download = 'data-offers.zip';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        window.URL.revokeObjectURL(downloadUrl);
 
         dispatch(setSnackbarMessage({ message: 'alerts.subscriptionSuccess', type: 'success' }));
         handleSuccess();
       } else {
-        dispatch(setSnackbarMessage({ message: 'Failed to download offers', type: 'error' }));
+        dispatch(setSnackbarMessage({ message: 'alerts.downloadOffersFailed', type: 'error' }));
       }
     } catch (e) {
       console.log(e);
@@ -225,7 +227,7 @@ export default function ConsumeData() {
       }
 
       if (!providerUrl) {
-        dispatch(setSnackbarMessage({ message: 'Please select a connector', type: 'error' }));
+        dispatch(setSnackbarMessage({ message: 'alerts.selectConnector', type: 'error' }));
         return;
       }
 
@@ -233,7 +235,7 @@ export default function ConsumeData() {
 
 
       const params: Record<string, any> = {
-        providerUrl: encodeURIComponent(providerUrl),
+        providerUrl: providerUrl,
         offset: 0,
         maxLimit: MAX_CONTRACTS_AGREEMENTS
       };
@@ -242,7 +244,7 @@ export default function ConsumeData() {
         params.bpnNumber = filterSelectedBPN;
       }
       else {
-        dispatch(setSnackbarMessage({ message: 'Please provide either BPN or search for a company', type: 'error' }));
+        dispatch(setSnackbarMessage({ message: 'alerts.provideBpnOrCompany', type: 'error' }));
         return;
       }
 
@@ -250,7 +252,7 @@ export default function ConsumeData() {
       dispatch(setContractOffers(response.data));
     } catch (error) {
       dispatch(setContractOffers([]));
-      dispatch(setSnackbarMessage({ message: 'Failed to fetch offers', type: 'error' }));
+      dispatch(setSnackbarMessage({ message: 'alerts.fetchOffersFailed', type: 'error' }));
     } finally {
       dispatch(setOffersLoading(false));
     }
