@@ -2,6 +2,7 @@
 /********************************************************************************
  * Copyright (c) 2024 T-Systems International GmbH
  * Copyright (c) 2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 ARENA2036 e.V.
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -76,6 +77,22 @@ function PolicySelection({ data }: Readonly<{ data: PolicyHubResponse[] }>) {
     }
   };
 
+  // wrapper to adapt the library Option shape to ISelectList without changing the async handler signature
+  const handleOptionChange = (items: any) => {
+    const item: ISelectList = {
+      id: items?.id ?? items?.value,
+      title: items?.title ?? items?.label ?? String(items?.value ?? ''),
+      value:
+        items?.value === 'NEW'
+          ? 'NEW'
+          : items?.value === 'EXISTING'
+          ? 'EXISTING'
+          : // fallback to EXISTING to match existing behavior
+            'EXISTING',
+    };
+    void handlePolicySelection(item);
+  };
+
   if (showPolicySelection) {
     return (
       <Box>
@@ -89,7 +106,7 @@ function PolicySelection({ data }: Readonly<{ data: PolicyHubResponse[] }>) {
             placeholder="Select a value"
             type={'text'}
             disableClearable={true}
-            onChangeItem={handlePolicySelection}
+            onChangeItem={handleOptionChange}
           />
         </FormControl>
       </Box>

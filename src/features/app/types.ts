@@ -1,6 +1,7 @@
 /********************************************************************************
  * Copyright (c) 2022,2024 T-Systems International GmbH
  * Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 ARENA2036 e.V.
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -47,7 +48,8 @@ export interface IExtraOptions {
 }
 
 export class UseCaseSelectionModel {
-  static create(useCase: IUseCase[]) {
+  static create(useCase: IUseCase[] | undefined | null) {
+    if (!Array.isArray(useCase)) return [];
     return useCase.map(item => {
       return { id: item.id, title: item.title, checked: false };
     });

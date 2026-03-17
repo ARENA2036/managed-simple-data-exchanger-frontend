@@ -2,6 +2,7 @@
 /********************************************************************************
  * Copyright (c) 2024 T-Systems International GmbH
  * Copyright (c) 2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 ARENA2036 e.V.
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -38,7 +39,7 @@ import { Controller, useFieldArray } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuid } from 'uuid';
 
-import { setFfilterCompanyOptionsLoading, setFilterCompanyOptions } from '../../features/consumer/slice';
+import { setFilterCompanyOptionsLoading, setFilterCompanyOptions } from '../../features/consumer/slice';
 import { ILegalEntityContent, IntOption } from '../../features/consumer/types';
 import { setSnackbarMessage } from '../../features/notifiication/slice';
 import { useValidateBpnMutation } from '../../features/provider/policies/apiSlice';
@@ -102,9 +103,9 @@ function ValidateBpn({ control, resetField, getValues, setValue, inputBpn }: any
     if (searchStr.length > 2) {
       setSearchPopup(true);
       dispatch(setFilterCompanyOptions([]));
-      dispatch(setFfilterCompanyOptionsLoading(true));
+      dispatch(setFilterCompanyOptionsLoading(true));
       const res: [] = await ConsumerService.getInstance().searchLegalEntities(searchStr);
-      dispatch(setFfilterCompanyOptionsLoading(false));
+      dispatch(setFilterCompanyOptionsLoading(false));
       if (res.length > 0) {
         const filterContent = res.map((item: ILegalEntityContent, index) => {
           return {
@@ -130,8 +131,8 @@ function ValidateBpn({ control, resetField, getValues, setValue, inputBpn }: any
             label={t('content.consumeData.selectType')}
             fullWidth
             size="small"
-            onChangeItem={e => {
-              setSelectType(e);
+            onChangeItem={e  => {
+              setSelectType(e as { id: number; title: string; value: string });
               resetField('inputBpn', { defaultValue: '' });
             }}
             items={BPN_TYPE_FIELDS}

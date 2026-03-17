@@ -1,6 +1,7 @@
 /********************************************************************************
  * Copyright (c) 2022,2024 T-Systems International GmbH
  * Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 ARENA2036 e.V.
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -32,11 +33,16 @@ export default function Main({ loggedUser }: Readonly<{ loggedUser: IUser }>) {
     <>
       {UserService.hasValidResource() ? (
         <AppLayout loggedUser={loggedUser}>
+          
           <Outlet />
         </AppLayout>
       ) : (
-        <ErrorPage header="This webpage is not available." title="Sorry for this inconvenience." />
+       <ErrorPage header="This webpage is not available." title="Sorry for this inconvenience." />
       )}
+       <AppLayout loggedUser={loggedUser}>
+          
+          <Outlet />
+        </AppLayout>
     </>
   );
 }

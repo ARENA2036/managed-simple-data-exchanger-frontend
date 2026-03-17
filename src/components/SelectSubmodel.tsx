@@ -1,6 +1,7 @@
 /********************************************************************************
  * Copyright (c) 2022,2024 T-Systems International GmbH
  * Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 ARENA2036 e.V.
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -34,9 +35,17 @@ const SelectSubmodel = () => {
   const { t } = useTranslation();
 
   const handleTypeChange = useCallback(
-    async (item: ISubmodelList) => {
-      dispatch(setSelectedSubmodel(item));
-      dispatch(fetchSubmodelDetails(item.value));
+    async (item: any) => {
+      const normalized: ISubmodelList = item && 'id' in item && 'title' in item && 'value' in item
+        ? item
+        : {
+            id: item?.id ?? item?.value,
+            title: item?.label ?? item?.value ?? '',
+            value: item?.value ?? '',
+          };
+
+      dispatch(setSelectedSubmodel(normalized));
+      dispatch(fetchSubmodelDetails(normalized.value));
       // clearing the selected files and rows
       dispatch(clearRows());
       dispatch(removeSelectedFiles());

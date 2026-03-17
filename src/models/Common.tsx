@@ -1,6 +1,7 @@
 /********************************************************************************
  * Copyright (c) 2021,2022,2023 T-Systems International GmbH
  * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 ARENA2036 e.V.
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -21,9 +22,13 @@
 interface IDefaultObject {
   [key: string]: string;
 }
+interface Option {
+  [key: string]: any;
+}
 
-interface ISelectList {
-  id: number;
+
+interface ISelectList extends Option {
+   id: string | number;
   title: string;
   value: string;
 }

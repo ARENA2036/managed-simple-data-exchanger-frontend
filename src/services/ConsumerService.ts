@@ -1,6 +1,7 @@
 /********************************************************************************
  * Copyright (c) 2021,2022,2023 T-Systems International GmbH
  * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 ARENA2036 e.V.
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -42,10 +43,11 @@ class ConsumerService extends HttpService {
     return res;
   }
 
-  public async subscribeToOffers(offers: unknown) {
+  public async subscribeToOffersAndDownload(offers: unknown) {
     const res = await this.instance({
       method: 'POST',
-      url: '/subscribe-data-offers',
+      url: '/subscribe-download-data-offers',
+      responseType: 'blob',
       data: offers,
     });
     return res;

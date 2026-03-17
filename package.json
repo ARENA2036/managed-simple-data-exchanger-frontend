@@ -41,7 +41,7 @@
     "file-saver": "^2.0.5",
     "i18next": "^23.11.1",
     "i18next-browser-languagedetector": "^8.0.0",
-    "keycloak-js": "^24.0.4",
+    "keycloak-js": "^24.0.5",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "react": "^18.2.0",
@@ -86,7 +86,7 @@
     "vitest": "^1.4.0"
   },
   "scripts": {
-    "start": "vite --host --port 3000",
+    "start": "vite dev --host --port 3000",
     "build": "tsc && vite build",
     "preview": "vite preview --host --port 3000",
     "test": "vitest",

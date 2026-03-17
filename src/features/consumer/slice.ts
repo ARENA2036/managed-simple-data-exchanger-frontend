@@ -1,6 +1,7 @@
 /********************************************************************************
  * Copyright (c) 2022,2024 T-Systems International GmbH
  * Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 ARENA2036 e.V.
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -82,7 +83,7 @@ export const consumerSlice = createSlice({
     setFilterCompanyOptions: (state, action: PayloadAction<IntOption[]>) => {
       state.filterCompanyOptions = action.payload;
     },
-    setFfilterCompanyOptionsLoading: (state, action: PayloadAction<boolean>) => {
+    setFilterCompanyOptionsLoading: (state, action: PayloadAction<boolean>) => {
       state.filterCompanyOptionsLoading = action.payload;
     },
     setSelectedFilterCompanyOption: (state, action: PayloadAction<IntOption>) => {
@@ -129,7 +130,7 @@ export const {
   setSearchFilterByType,
   setFilterProviderUrl,
   setFilterCompanyOptions,
-  setFfilterCompanyOptionsLoading,
+  setFilterCompanyOptionsLoading,
   setSelectedFilterCompanyOption,
   setFilterConnectors,
   setFilterSelectedConnector,
