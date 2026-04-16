@@ -24,7 +24,7 @@ import { expect, test } from 'vitest';
 import OfferDetailsDialog from '../components/dialogs/OfferDetailsDialog';
 import { IConsumerDataOffers } from '../features/consumer/types';
 
-test('Snapshot OfferDetailsDialog - load and diaplay offer details component', () => {
+test('Snapshot OfferDetailsDialog - load and display offer details component', () => {
   const offerItem: IConsumerDataOffers = {
     bpnNumbers: ['BPN1', 'BPN2'],
     connectorOfferid: 'connector1',
