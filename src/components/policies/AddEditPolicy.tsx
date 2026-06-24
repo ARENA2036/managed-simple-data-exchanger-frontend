@@ -20,11 +20,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Dialog, DialogContent, DialogHeader, Typography } from '@catena-x/portal-shared-components';
+import { Dialog, DialogContent, DialogHeader, Typography } from '@arena2036/portal-shared-components-arena-x';
 import { useTranslation } from 'react-i18next';
 
 import { uploadFileWithPolicy, uploadTableWithPolicy } from '../../features/provider/policies/actions';
-import { useCreatePolicyMutation, useUpdatePolicyMutation  } from '../../features/provider/policies/apiSlice';
+import { useCreatePolicyMutation, useUpdatePolicyMutation } from '../../features/provider/policies/apiSlice';
 import { setPolicyDialog } from '../../features/provider/policies/slice';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import PolicyHub from '../../pages/PolicyHub';
@@ -45,25 +45,25 @@ function AddEditPolicyNew() {
         case 'TableWithPolicy':
           await dispatch(uploadTableWithPolicy(formData));
           break;
-         case 'Add':
-        await createPolicy(formData).unwrap();
-        break;
-          case 'Edit':
-        if (!selectedPolicy?.uuid) {
-          console.error('Missing UUID for update');
-          return;
-        }
+        case 'Add':
+          await createPolicy(formData).unwrap();
+          break;
+        case 'Edit':
+          if (!selectedPolicy?.uuid) {
+            console.error('Missing UUID for update');
+            return;
+          }
 
-        await updatePolicy({
-          ...formData,
-          uuid: selectedPolicy.uuid,
-        }).unwrap();
-        break;
+          await updatePolicy({
+            ...formData,
+            uuid: selectedPolicy.uuid,
+          }).unwrap();
+          break;
 
         default:
-        console.error('Unhandled policyDialogType:', policyDialogType);
-        return;
-         
+          console.error('Unhandled policyDialogType:', policyDialogType);
+          return;
+
       }
     } catch (error) {
       console.log(error);
@@ -87,6 +87,17 @@ function AddEditPolicyNew() {
             </li>
           ))}
         </ol>
+        <Typography
+          variant="body2"
+          sx={{
+            mt: 2,
+            mb: 2,
+            color: 'warning.main',
+            fontWeight: 600,
+          }}
+        >
+          Note: The current version does not support using BPNs when creating or editing policies.
+        </Typography>
         <PolicyHub onSubmit={onSubmit} />
       </DialogContent>
     </Dialog>
