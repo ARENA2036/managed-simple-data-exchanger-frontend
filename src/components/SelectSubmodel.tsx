@@ -39,7 +39,7 @@ const SelectSubmodel = () => {
       const normalized: ISubmodelList = item && 'id' in item && 'title' in item && 'value' in item
         ? item
         : {
-            id: item?.value ?? '',
+            id: item?.id ?? item?.value,
             title: item?.label ?? item?.value ?? '',
             value: item?.value ?? '',
           };

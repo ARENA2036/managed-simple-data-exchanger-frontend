@@ -2,6 +2,7 @@
 /********************************************************************************
  * Copyright (c) 2021,2024 T-Systems International GmbH
  * Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 ARENA2036 e.V.
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -195,18 +196,19 @@ export default function ConsumeData() {
 
       if (response && response.status === 200) {
 
-        const blob = new Blob([response.data], { type: 'application/zip' });
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'data-offers.zip';
-        a.click();
-        window.URL.revokeObjectURL(url);
+        const downloadUrl = window.URL.createObjectURL(response.data);
+        const downloadLink = document.createElement('a');
+        downloadLink.href = downloadUrl;
+        downloadLink.download = 'data-offers.zip';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        window.URL.revokeObjectURL(downloadUrl);
 
         dispatch(setSnackbarMessage({ message: 'alerts.subscriptionSuccess', type: 'success' }));
         handleSuccess();
       } else {
-        dispatch(setSnackbarMessage({ message: 'Failed to download offers', type: 'error' }));
+        dispatch(setSnackbarMessage({ message: 'alerts.downloadOffersFailed', type: 'error' }));
       }
     } catch (e) {
       console.log(e);
@@ -225,29 +227,24 @@ export default function ConsumeData() {
       }
 
       if (!providerUrl) {
-        dispatch(setSnackbarMessage({ message: 'Please select a connector', type: 'error' }));
+        dispatch(setSnackbarMessage({ message: 'alerts.selectConnector', type: 'error' }));
         return;
       }
 
       dispatch(setOffersLoading(true));
 
-      // Prepare query params
+
       const params: Record<string, any> = {
-        providerUrl: encodeURIComponent(providerUrl),
+        providerUrl: providerUrl,
         offset: 0,
         maxLimit: MAX_CONTRACTS_AGREEMENTS
       };
-
-      // Add BPN if available (from either direct input or company search)
+     
       if (filterSelectedBPN) {
         params.bpnNumber = filterSelectedBPN;
       }
-      // If you have manufacturerPartId available from somewhere, add it here:
-      // else if (manufacturerPartId) {
-      //   params.manufacturerPartId = manufacturerPartId;
-      // }
       else {
-        dispatch(setSnackbarMessage({ message: 'Please provide either BPN or search for a company', type: 'error' }));
+        dispatch(setSnackbarMessage({ message: 'alerts.provideBpnOrCompany', type: 'error' }));
         return;
       }
 
@@ -255,13 +252,12 @@ export default function ConsumeData() {
       dispatch(setContractOffers(response.data));
     } catch (error) {
       dispatch(setContractOffers([]));
-      dispatch(setSnackbarMessage({ message: 'Failed to fetch offers', type: 'error' }));
+      dispatch(setSnackbarMessage({ message: 'alerts.fetchOffersFailed', type: 'error' }));
     } finally {
       dispatch(setOffersLoading(false));
     }
   };
 
-  // enter key fetch data
   const handleKeypress = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (['Enter', 'NumpadEnter'].includes(e.key)) {
       await fetchConsumerDataOffers();
@@ -601,7 +597,7 @@ export default function ConsumeData() {
             rowsPerPageOptions={[10, 25, 50, 100]}
             onSelectionModelChange={newSelectionModel => handleSelectionModel(newSelectionModel)}
             selectionModel={selectionModel}
-            isRowSelectable={params => params.row.type !== 'PCFExchangeEndpot'}
+            isRowSelectable={params => params.row.type !== 'PCFExchangeEndpoint'}
             components={{
               Toolbar: GridToolbar,
               LoadingOverlay: LinearProgress,

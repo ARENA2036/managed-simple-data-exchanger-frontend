@@ -51,6 +51,7 @@ export default function CreateData() {
       <SelectedUseCases />
       <Typography variant="body1">{t('content.provider.description_1')}</Typography>
       <Typography variant="body1">{t('content.provider.description_2')}</Typography>
+
       <ul style={{ margin: 0 }}>
         <li>
           <Typography variant="body1">{t('content.provider.description_2_1')}</Typography>
@@ -58,6 +59,30 @@ export default function CreateData() {
         <li>
           <Typography variant="body1">{t('content.provider.description_2_2')}</Typography>
         </li>
+      </ul>
+      <Typography
+        variant="body2"
+        sx={{
+          mt: 2,
+          mb: 1,
+          color: 'warning.main',
+          fontWeight: 600,
+        }}
+      >
+        Important Notes:
+      </Typography>
+
+      <ul style={{ paddingLeft: '20px', marginTop: 0, marginBottom: '16px' }}>      
+          <Typography variant="body2" color="warning.main">
+            The following submodels both versions are currently not supported:
+            <ul>
+              <li>Single Level BOM As Built</li>
+              <li>Single Level BOM As Planned</li>
+              <li>Single Level Usage As Built</li>
+              <li>Product Carbon Footprint</li>
+            </ul>
+          </Typography>
+        
       </ul>
       <Grid container spacing={2} mb={3} display={'flex'} alignItems={'flex-end'}>
         <Grid item xs={3}>
@@ -79,7 +104,7 @@ export default function CreateData() {
                 expanded: false,
                 icon: null,
                 id: 'panel-1',
-                onChange: () => {},
+                onChange: () => { },
                 title: t('content.provider.previewTableTitle'),
                 sx: {
                   marginTop: 30,

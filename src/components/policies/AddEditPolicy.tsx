@@ -2,6 +2,7 @@
 /********************************************************************************
  * Copyright (c) 2024 T-Systems International GmbH
  * Copyright (c) 2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 ARENA2036 e.V.
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -19,11 +20,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Dialog, DialogContent, DialogHeader, Typography } from '@arena2036/portal-shared-components-arena-x';
+import { Dialog, DialogContent, DialogHeader, Typography } from '@catena-x/portal-shared-components';
 import { useTranslation } from 'react-i18next';
 
 import { uploadFileWithPolicy, uploadTableWithPolicy } from '../../features/provider/policies/actions';
-import { useCreatePolicyMutation } from '../../features/provider/policies/apiSlice';
+import { useCreatePolicyMutation, useUpdatePolicyMutation  } from '../../features/provider/policies/apiSlice';
 import { setPolicyDialog } from '../../features/provider/policies/slice';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import PolicyHub from '../../pages/PolicyHub';
@@ -31,8 +32,9 @@ import PolicyHub from '../../pages/PolicyHub';
 function AddEditPolicyNew() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { policyDialog, policyDialogType } = useAppSelector(state => state.policySlice);
+  const { policyDialog, policyDialogType, selectedPolicy } = useAppSelector(state => state.policySlice);
   const [createPolicy] = useCreatePolicyMutation();
+  const [updatePolicy] = useUpdatePolicyMutation();
 
   const onSubmit = async (formData: any) => {
     try {
@@ -43,9 +45,24 @@ function AddEditPolicyNew() {
         case 'TableWithPolicy':
           await dispatch(uploadTableWithPolicy(formData));
           break;
+         case 'Add':
+        await createPolicy(formData).unwrap();
+        break;
+          case 'Edit':
+        if (!selectedPolicy?.uuid) {
+          console.error('Missing UUID for update');
+          return;
+        }
+
+        await updatePolicy({
+          ...formData,
+          uuid: selectedPolicy.uuid,
+        }).unwrap();
+        break;
+
         default:
-           await createPolicy(formData).unwrap();
-          break;
+        console.error('Unhandled policyDialogType:', policyDialogType);
+        return;
          
       }
     } catch (error) {

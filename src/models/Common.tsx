@@ -27,7 +27,7 @@ interface Option {
 
 
 interface ISelectList extends Option {
-  id: number;
+  id: string | number;
   title: string;
   value: string;
 }

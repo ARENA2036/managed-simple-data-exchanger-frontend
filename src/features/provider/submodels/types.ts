@@ -25,7 +25,7 @@ interface Option {
 }
 
 export interface ISubmodelList extends Option {
-  id: number;
+  id: string | number;
   title: string;
   value: string;
 }
