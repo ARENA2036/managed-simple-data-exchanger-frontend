@@ -19,7 +19,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { indexOf } from 'lodash';
 
 import { apiSlice } from '../../app/apiSlice';
 import { setPageLoading } from '../../app/slice';

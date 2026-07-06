@@ -31,7 +31,7 @@ export const contractsSlice = apiSlice.injectEndpoints({
       },
       providesTags: ['DeleteContract'],
       transformResponse: async ({ connector, contracts }) => {
-        const modifieldData = contracts
+        const modifiedData = contracts
           .sort(
             (contract1: IContractAgreements, contract2: IContractAgreements) =>
               contract2.dateCreated - contract1.dateCreated,
@@ -39,7 +39,7 @@ export const contractsSlice = apiSlice.injectEndpoints({
           .map((item: IContractAgreements, index: number) => {
             return { ...{ id: index, ...item } };
           });
-        return { connector, contracts: modifieldData };
+        return { connector, contracts: modifiedData };
       },
     }),
     deleteContract: builder.mutation({

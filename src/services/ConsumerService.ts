@@ -63,7 +63,7 @@ class ConsumerService extends HttpService {
   }
 
   // Get connectors by bpn number
-  public async searchConnectoByBPN(payload: string[]) {
+  public async searchConnectorByBPN(payload: string[]) {
     const res = await this.instance({
       method: 'POST',
       url: '/connectors-discovery',

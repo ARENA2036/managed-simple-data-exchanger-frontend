@@ -26,7 +26,7 @@ import { useTranslation } from 'react-i18next';
 
 import { FileSize, FileType } from '../enums';
 import { setPageLoading } from '../features/app/slice';
-import { setSnackbarMessage } from '../features/notifiication/slice';
+import { setSnackbarMessage } from '../features/notification/slice';
 import { setPolicyData, setPolicyDialog, setPolicyDialogType } from '../features/provider/policies/slice';
 import { removeSelectedFiles, setSelectedFiles, setUploadStatus } from '../features/provider/upload/slice';
 import { useAppDispatch, useAppSelector } from '../features/store';

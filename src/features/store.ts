@@ -25,7 +25,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { apiSlice } from './app/apiSlice';
 import appSlice from './app/slice';
 import consumerSlice from './consumer/slice';
-import notificationSlice from './notifiication/slice';
+import notificationSlice from './notification/slice';
 import uploadHistorySlice from './provider/history/slice';
 import accessUsagePolicySlice from './provider/policies/slice';
 import policySlice from './provider/policies/slice';

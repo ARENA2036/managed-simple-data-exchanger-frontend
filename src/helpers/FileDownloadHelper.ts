@@ -19,7 +19,7 @@
 
 import saveAs from 'file-saver';
 
-import { setSnackbarMessage } from '../features/notifiication/slice';
+import { setSnackbarMessage } from '../features/notification/slice';
 import { store } from '../features/store';
 
 function csvFileDownload(data: BlobPart, name: string) {

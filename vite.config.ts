@@ -36,7 +36,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'happy-dom',
-    setupFiles: './src/setUpTests.ts',
+    setupFiles: './src/setupTests.ts',
   },
   optimizeDeps: { exclude: ['fsevents'] },
   build: {

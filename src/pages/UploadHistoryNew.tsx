@@ -72,7 +72,7 @@ function UploadHistoryNew() {
     dispatch(setErrorsList([]));
     dispatch(setIsLoding(true));
     dispatch(setCurrentProcessId(subModel.processId));
-    const resp = await ProviderService.getInstance().getUplodHistoryErrors(subModel.processId);
+    const resp = await ProviderService.getInstance().getUploadHistoryErrors(subModel.processId);
     dispatch(setErrorsList(resp.data));
     dispatch(setIsLoding(false));
   };

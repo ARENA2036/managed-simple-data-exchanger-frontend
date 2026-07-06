@@ -41,7 +41,7 @@ import { v4 as uuid } from 'uuid';
 
 import { setFilterCompanyOptionsLoading, setFilterCompanyOptions } from '../../features/consumer/slice';
 import { ILegalEntityContent, IntOption } from '../../features/consumer/types';
-import { setSnackbarMessage } from '../../features/notifiication/slice';
+import { setSnackbarMessage } from '../../features/notification/slice';
 import { useValidateBpnMutation } from '../../features/provider/policies/apiSlice';
 import { useAppDispatch, useAppSelector } from '../../features/store';
 import ConsumerService from '../../services/ConsumerService';

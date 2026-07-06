@@ -73,7 +73,7 @@ import {
   IntConnectorItem,
   IntOption,
 } from '../features/consumer/types';
-import { setSnackbarMessage } from '../features/notifiication/slice';
+import { setSnackbarMessage } from '../features/notification/slice';
 import { useAppDispatch, useAppSelector } from '../features/store';
 import { handleBlankCellValues, MAX_CONTRACTS_AGREEMENTS } from '../helpers/ConsumerOfferHelper';
 import ConsumerService from '../services/ConsumerService';
@@ -350,7 +350,7 @@ export default function ConsumeData() {
     dispatch(setFilterSelectedConnector(null));
     dispatch(setFilterConnectors([]));
     try {
-      const res = await ConsumerService.getInstance().searchConnectoByBPN(payload);
+      const res = await ConsumerService.getInstance().searchConnectorByBPN(payload);
       if (res.length) {
         const resC: IConnectorResponse[] = res;
         const connector = resC[0];

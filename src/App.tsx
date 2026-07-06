@@ -25,7 +25,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PageLoading from './components/PageLoading';
 import Permissions from './components/Permissions';
 import { IUser } from './features/app/types';
-import Notification from './features/notifiication';
+import Notification from './features/notification';
 import { IRoutes, ROUTES } from './helpers/RouteHelper';
 import Main from './Main';
 

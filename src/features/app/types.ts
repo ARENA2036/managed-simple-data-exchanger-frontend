@@ -18,7 +18,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { IAlertColors } from '../notifiication/types';
+import { IAlertColors } from '../notification/types';
 export interface IUser {
   userName: string;
   name: string;

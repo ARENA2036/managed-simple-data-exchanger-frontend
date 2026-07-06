@@ -20,7 +20,7 @@
 import { BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 
 import { apiBaseQuery } from '../../services/RequestService';
-import { setSnackbarMessage } from '../notifiication/slice';
+import { setSnackbarMessage } from '../notification/slice';
 import { setPageLoading, setPermissions, setUseCases } from './slice';
 import { IExtraOptions, UseCaseSelectionModel } from './types';
 

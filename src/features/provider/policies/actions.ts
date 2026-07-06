@@ -22,7 +22,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { omit } from 'lodash';
 
 import { PolicyHubModel } from '../../../models/Polices.models';
-import { setSnackbarMessage } from '../../notifiication/slice';
+import { setSnackbarMessage } from '../../notification/slice';
 import { RootState } from '../../store';
 import { clearRows } from '../submodels/slice';
 import { uploadApiSlice } from '../upload/apiSlice';
