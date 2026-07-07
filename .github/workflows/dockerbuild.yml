@@ -79,13 +79,14 @@ jobs:
             type=raw,value=${{ github.sha }}
             type=raw,value=${{ github.event.inputs.image_tag }}
 
-      - name: DockerHub Login
-        if: github.event_name != 'pull_request'
-        uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
+      - name: Docker Login
+        # if: github.event_name != 'pull_request'
+        uses: azure/docker-login@v1
         with:
           # Use existing DockerHub credentials present as secrets
-          username: ${{ secrets.DOCKER_HUB_USER }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          login-server: ${{ secrets.HBR_REGISTRY }}
+          username: ${{ secrets.HBR_USERNAME }}
+          password: ${{ secrets.HBR_PASSWORD }}
 
       - name: Build and push
         uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
