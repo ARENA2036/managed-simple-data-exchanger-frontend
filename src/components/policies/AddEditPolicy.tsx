@@ -87,6 +87,16 @@ function AddEditPolicyNew() {
             </li>
           ))}
         </ol>
+        <Typography
+      variant="body2"
+      sx={{
+        color: 'warning.main',
+        fontWeight: 600,
+        mb: 3,
+      }}
+    >
+      {t('content.policies.note_bpn')}
+    </Typography>
         <PolicyHub onSubmit={onSubmit} />
       </DialogContent>
     </Dialog>

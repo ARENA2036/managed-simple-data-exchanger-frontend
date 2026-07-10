@@ -60,6 +60,54 @@ export default function CreateData() {
           <Typography variant="body1">{t('content.provider.description_2_2')}</Typography>
         </li>
       </ul>
+
+      <Box mt={3} mb={3}>
+        <Typography
+          variant="h6"
+          sx={{
+            color: 'warning.main',
+            fontWeight: 600,
+            mb: 1,
+          }}
+        >
+          {t('content.provider.importantNotes')}
+        </Typography>
+
+        <Typography
+          variant="body1"
+          sx={{ color: 'warning.main', mb: 0.5 }}
+        >
+          {t('content.provider.unsupportedSubmodels')}
+        </Typography>
+
+        <ul
+          style={{
+            marginTop: 0,
+            color: '#F57C00',
+          }}
+        >
+          <li>
+            <Typography variant="body1" color="warning.main">
+              Single Level BOM As Built
+            </Typography>
+          </li>
+          <li>
+            <Typography variant="body1" color="warning.main">
+              Single Level BOM As Planned
+            </Typography>
+          </li>
+          <li>
+            <Typography variant="body1" color="warning.main">
+              Single Level Usage As Built
+            </Typography>
+          </li>
+          <li>
+            <Typography variant="body1" color="warning.main">
+              Product Carbon Footprint
+            </Typography>
+          </li>
+        </ul>
+      </Box>
       <Grid container spacing={2} mb={3} display={'flex'} alignItems={'flex-end'}>
         <Grid item xs={3}>
           <SelectSubmodel />
@@ -80,7 +128,7 @@ export default function CreateData() {
                 expanded: false,
                 icon: null,
                 id: 'panel-1',
-                onChange: () => {},
+                onChange: () => { },
                 title: t('content.provider.previewTableTitle'),
                 sx: {
                   marginTop: 30,
