@@ -86,7 +86,7 @@
     "vitest": "^1.4.0"
   },
   "scripts": {
-    "start": "vite dev --host --port 3000",
+    "start": "vite --host --port 3000",
     "build": "tsc && vite build",
     "preview": "vite preview --host --port 3000",
     "test": "vitest",
