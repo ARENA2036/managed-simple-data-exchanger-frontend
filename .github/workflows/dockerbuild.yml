@@ -1,7 +1,7 @@
 #################################################################################
 # Copyright (c) 2023,2024 T-Systems International GmbH
+# Copyright (c) 2023.2024 Contributors to the Eclipse Foundation
 # Copyright (c) 2025 ARENA2036 e.V.
-# Copyright (c) 2023,2024 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -38,7 +38,7 @@ on:
         default: 'latest'
 
 env:
-  IMAGE_NAMESPACE: 'tractusx'
+  IMAGE_NAMESPACE: 'harbor-hub-shared.arena.3ascloud.de/arena2036'
   IMAGE_NAME: 'managed-simple-data-exchanger-frontend'
   # variables needed for scripts/legal-notice.sh
   SERVER_URL: '${{ github.server_url }}'
@@ -78,14 +78,14 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=raw,value=${{ github.sha }}
             type=raw,value=${{ github.event.inputs.image_tag }}
-
-      - name: DockerHub Login
-        if: github.event_name != 'pull_request'
-        uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
+      - name: Docker Login
+        # if: github.event_name != 'pull_request'
+        uses: azure/docker-login@v1
         with:
           # Use existing DockerHub credentials present as secrets
-          username: ${{ secrets.DOCKER_HUB_USER }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          login-server: ${{ secrets.HBR_REGISTRY }}
+          username: ${{ secrets.HBR_USERNAME }}
+          password: ${{ secrets.HBR_PASSWORD }}
 
       - name: Build and push
         uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
@@ -100,14 +100,14 @@ jobs:
 
       #   # https://github.com/peter-evans/dockerhub-description
       #   # Important step to push image description to DockerHub
-      - name: Update Docker Hub description
-        if: github.event_name != 'pull_request'
-        uses: peter-evans/dockerhub-description@432a30c9e07499fd01da9f8a49f0faf9e0ca5b77 # v4.0.2
-        with:
-          # readme-filepath defaults to toplevel README.md, Only necessary if you have a dedicated file with your 'Notice for docker images'
-          # readme-filepath: path/to/dedicated/notice-for-docker-image.md
-          username: ${{ secrets.DOCKER_HUB_USER }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
-          repository: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
-          # IMPORTANT: Adjust this to the actual path of your container image notice
-          readme-filepath: ./DOCKER_NOTICE.md
+      # - name: Update Docker Hub description
+      #   if: github.event_name != 'pull_request'
+      #   uses: peter-evans/dockerhub-description@432a30c9e07499fd01da9f8a49f0faf9e0ca5b77 # v4.0.2
+      #   with:
+      #     # readme-filepath defaults to toplevel README.md, Only necessary if you have a dedicated file with your 'Notice for docker images'
+      #     # readme-filepath: path/to/dedicated/notice-for-docker-image.md
+      #     username: ${{ secrets.DOCKER_HUB_USER }}
+      #     password: ${{ secrets.DOCKER_HUB_TOKEN }}
+      #     repository: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
+      #     # IMPORTANT: Adjust this to the actual path of your container image notice
+      #     readme-filepath: ./DOCKER_NOTICE.md
