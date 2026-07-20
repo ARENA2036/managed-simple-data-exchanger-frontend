@@ -3,7 +3,7 @@
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Simple Data Exchanger Frontend.
 
 
-## [3.0.0] - 2026-07-20
+## [3.0.0] - 2026-07-21
 - Implemented Provider-side functionality in the data exchange pages.
 - Extended consumer data offers interface with policy awareness (hasPolicy) for offer details overlay.
 - Fixed runtime configuration, i18n and policy handling issues.
