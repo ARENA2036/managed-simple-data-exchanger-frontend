@@ -31,7 +31,7 @@ import {
   LoadingButton,
   SelectList,
   Typography,
-} from '@catena-x/portal-shared-components';
+} from '@arena2036/portal-shared-components-arena-x';
 import { Autocomplete, Box, FormControl, Grid, Stack } from '@mui/material';
 import { debounce, inRange, isEmpty, uniq } from 'lodash';
 import { useEffect, useState } from 'react';

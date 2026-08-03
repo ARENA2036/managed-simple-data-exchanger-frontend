@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { theme } from '@catena-x/portal-shared-components';
+import { theme } from '@arena2036/portal-shared-components-arena-x';
 
 import { IDefaultObject, ISelectList } from '../models/Common';
 import { PolicyModel } from '../models/RecurringUpload.models';

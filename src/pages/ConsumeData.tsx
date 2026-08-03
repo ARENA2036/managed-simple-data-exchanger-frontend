@@ -29,7 +29,7 @@ import {
   LoadingButton,
   SelectList,
   Typography,
-} from '@catena-x/portal-shared-components';
+} from '@arena2036/portal-shared-components-arena-x';
 import { Autocomplete, Box, Grid, LinearProgress } from '@mui/material';
 import {
   DataGrid,
