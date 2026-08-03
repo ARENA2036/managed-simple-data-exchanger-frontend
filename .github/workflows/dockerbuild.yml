@@ -80,7 +80,7 @@ jobs:
             type=raw,value=${{ github.event.inputs.image_tag }}
       - name: Docker Login
         # if: github.event_name != 'pull_request'
-        uses: azure/docker-login@v1
+        uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
         with:
           # Use existing DockerHub credentials present as secrets
           login-server: ${{ secrets.HBR_REGISTRY }}
