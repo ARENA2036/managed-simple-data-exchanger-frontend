@@ -26,6 +26,7 @@ on:
   push:
     branches:
       - main
+      - ci-cd-branch
 
   schedule:
     # Run daily at 00:00 UTC
