@@ -292,7 +292,7 @@ jobs:
             "/repos/ARENA2036/managed-simple-data-exchanger/dispatches" \
             --input - <<EOF
             {
-            "event_type": "sde-preview-image-ready",
+            "event_type": "sde-deployment-request",
             "client_payload": {
                 "source": "frontend",
                 "branch": "${{ github.ref_name }}",
