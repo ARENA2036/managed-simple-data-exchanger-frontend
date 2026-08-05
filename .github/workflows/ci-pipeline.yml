@@ -1,23 +1,23 @@
 name: SDE Frontend CI
 
 on:
-  push:
-    branches:
-      - main
-      - develop
-      - "feature/**"
-      - "bugfix/**"
-      - "hotfix/**"
-      - "chore/**"
-      - "feat/**"
-      - "docs/**"
-      - "release/**"
-      - ci-cd-branch
+#   push:
+#     branches:
+#       - main
+#       - develop
+#       - "feature/**"
+#       - "bugfix/**"
+#       - "hotfix/**"
+#       - "chore/**"
+#       - "feat/**"
+#       - "docs/**"
+#       - "release/**"
+#       - ci-cd-branch
 
-  pull_request:
-    branches:
-      - main
-      - develop
+#   pull_request:
+#     branches:
+#       - main
+#       - develop
 
   workflow_dispatch:
     inputs:
