@@ -24,7 +24,7 @@ name: "Trivy (Reusable)"
 
 on:
   push:
-    branches: [main, develop, ci-cd-branch]
+    branches: [main, develop]
 
   # schedule:
   #   # Run daily at 00:00 UTC

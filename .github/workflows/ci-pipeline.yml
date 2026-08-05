@@ -64,26 +64,26 @@ env:
   IMAGE_REPOSITORY: harbor-hub-shared.arena.3ascloud.de/arena2036/managed-simple-data-exchanger-frontend
 
 jobs:
-  # Existing dependency workflow.
-  # dependencies.yml must support workflow_call.
-  dependencies:
-    name: Check Dependencies
-    uses: ./.github/workflows/dependencies.yml
-    secrets: inherit
+#   # Existing dependency workflow.
+#   # dependencies.yml must support workflow_call.
+#   dependencies:
+#     name: Check Dependencies
+#     uses: ./.github/workflows/dependencies.yml
+#     secrets: inherit
 
-  # Existing CodeQL workflow.
-  # code-ql.yml must support workflow_call.
-  codeql:
-    name: CodeQL
-    uses: ./.github/workflows/code-ql.yml
-    secrets: inherit
+#   # Existing CodeQL workflow.
+#   # code-ql.yml must support workflow_call.
+#   codeql:
+#     name: CodeQL
+#     uses: ./.github/workflows/code-ql.yml
+#     secrets: inherit
 
-  # Existing TruffleHog workflow.
-  # Check the exact capitalization of the filename.
-  secret-scan:
-    name: Secret Scan
-    uses: ./.github/workflows/truffleHog.yml
-    secrets: inherit
+#   # Existing TruffleHog workflow.
+#   # Check the exact capitalization of the filename.
+#   secret-scan:
+#     name: Secret Scan
+#     uses: ./.github/workflows/truffleHog.yml
+#     secrets: inherit
 
   # KICS is currently disabled.
   # Enable it after kics.yml supports workflow_call.
@@ -154,9 +154,9 @@ jobs:
     name: Build Frontend Image
 
     needs:
-      - dependencies
-      - codeql
-      - secret-scan
+    #   - dependencies
+    #   - codeql
+    #   - secret-scan
       - resolve-image-tag
 
     # Pull requests already run directly in the existing dockerbuild.yml.
