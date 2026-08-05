@@ -302,9 +302,9 @@ jobs:
             EOF
 
             echo "Helm repository was triggered"
-          echo "Source: frontend"
-          echo "Branch: ${{ github.ref_name }}"
-          echo "Image tag: $IMAGE_TAG"
+            echo "Source: frontend"
+            echo "Branch: ${{ github.ref_name }}"
+            echo "Image tag: $IMAGE_TAG"
 
       - name: Write trigger summary
         shell: bash
