@@ -281,28 +281,28 @@ jobs:
 
       - name: Trigger Helm repository
         env:
-          GH_TOKEN: ${{ secrets.HELM_REPO_PAT }}
-          IMAGE_TAG: ${{ needs.resolve-image-tag.outputs.image_tag }}
+            GH_TOKEN: ${{ secrets.HELM_REPO_PAT }}
+            IMAGE_TAG: ${{ needs.resolve-image-tag.outputs.image_tag }}
 
         shell: bash
         run: |
-          set -euo pipefail
+            set -euo pipefail
 
-          gh api \
+            gh api \
             --method POST \
             "/repos/ARENA2036/managed-simple-data-exchanger/dispatches" \
             --input - <<EOF
-          {
+            {
             "event_type": "sde-preview-image-ready",
             "client_payload": {
-              "source": "frontend",
-              "branch": "${{ github.ref_name }}",
-              "image_tag": "${IMAGE_TAG}"
+                "source": "frontend",
+                "branch": "${{ github.ref_name }}",
+                "image_tag": "${IMAGE_TAG}"
             }
-          }
-          EOF
+            }
+            EOF
 
-          echo "Helm repository was triggered"
+            echo "Helm repository was triggered"
           echo "Source: frontend"
           echo "Branch: ${{ github.ref_name }}"
           echo "Image tag: $IMAGE_TAG"
