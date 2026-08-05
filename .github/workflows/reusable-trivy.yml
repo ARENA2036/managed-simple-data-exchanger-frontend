@@ -25,13 +25,15 @@ name: "Trivy (Reusable)"
 on:
   push:
     branches: [main, develop, ci-cd-branch]
+
   # schedule:
-    # Once a day
-    # - cron: "0 0 * * 0"
+  #   # Run daily at 00:00 UTC
+  #   - cron: "0 0 * * *"
+
   workflow_call:
     inputs:
       image_tag:
-        description: "Docker image tag to scan"
+        description: "Optional Docker image tag to scan"
         required: false
         type: string
         default: ""
@@ -41,8 +43,8 @@ on:
       image_tag:
         description: "Optional Docker image tag to scan"
         required: false
-        default: ""
         type: string
+        default: ""
 
 env:
   IMAGE_NAMESPACE: harbor-hub-shared.arena.3ascloud.de/arena2036
@@ -58,6 +60,7 @@ jobs:
       actions: read
       contents: read
       security-events: write
+
     uses: eclipse-tractusx/sig-infra/.github/workflows/reusable-trivy.yaml@main
     with:
       scan-type: "config"
@@ -67,10 +70,12 @@ jobs:
   trivy-images:
     name: Scan ${{ matrix.image }}
     runs-on: ubuntu-latest
+
     permissions:
       actions: read
       contents: read
       security-events: write
+
     strategy:
       fail-fast: false
       matrix:
@@ -82,20 +87,6 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-    
-      - name: Determine image tag
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          if [[ -n "${{ inputs.image_tag }}" ]]; then
-            IMAGE_TAG="${{ inputs.image_tag }}"
-          else
-            IMAGE_TAG="${{ github.sha }}"
-          fi
-
-          echo "IMAGE_TAG=$IMAGE_TAG" >> "$GITHUB_ENV"
-          echo "Scanning image tag: $IMAGE_TAG"
 
       - name: Docker Login
         uses: docker/login-action@v3
@@ -104,20 +95,75 @@ jobs:
           username: ${{ secrets.HBR_USERNAME }}
           password: ${{ secrets.HBR_PASSWORD }}
 
-      - name: Run Trivy vulnerability scanner (docker image)
+      - name: Determine image tag
+        shell: bash
+        env:
+          INPUT_IMAGE_TAG: ${{ inputs.image_tag }}
+          IMAGE_NAME: ${{ matrix.image }}
+          COMMIT_SHA: ${{ github.sha }}
+          BRANCH_NAME: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+
+          find_existing_tag() {
+            local tag="$1"
+            local image="${IMAGE_NAMESPACE}/${IMAGE_NAME}:${tag}"
+
+            echo "Checking image: ${image}"
+
+            if docker manifest inspect "${image}" >/dev/null 2>&1; then
+              IMAGE_TAG="${tag}"
+              FULL_IMAGE="${image}"
+              return 0
+            fi
+
+            return 1
+          }
+
+          if [[ -n "${INPUT_IMAGE_TAG}" ]]; then
+            if ! find_existing_tag "${INPUT_IMAGE_TAG}"; then
+              echo "::error::The provided image tag '${INPUT_IMAGE_TAG}' does not exist."
+              echo "::error::Image: ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${INPUT_IMAGE_TAG}"
+              exit 1
+            fi
+          else
+            echo "No image tag was provided. Looking for an existing image tag."
+
+            if find_existing_tag "${COMMIT_SHA}"; then
+              echo "Using commit SHA tag."
+            elif find_existing_tag "${BRANCH_NAME}"; then
+              echo "Using branch tag."
+            elif find_existing_tag "latest"; then
+              echo "Using latest tag."
+            else
+              echo "::error::No suitable image tag was found."
+              echo "::error::Checked tags: ${COMMIT_SHA}, ${BRANCH_NAME}, latest"
+              echo "::error::Provide an existing Harbor tag using the image_tag input."
+              exit 1
+            fi
+          fi
+
+          echo "IMAGE_TAG=${IMAGE_TAG}" >> "$GITHUB_ENV"
+          echo "FULL_IMAGE=${FULL_IMAGE}" >> "$GITHUB_ENV"
+          echo "Scanning image: ${FULL_IMAGE}"
+
+      - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
-          image-ref: "${{ env.IMAGE_NAMESPACE }}/${{ matrix.image }}:${{ env.IMAGE_TAG }}"
+          image-ref: "${{ env.FULL_IMAGE }}"
+          scan-type: "image"
           format: "sarif"
           output: "trivy-results-${{ matrix.image }}.sarif"
           vuln-type: "os,library"
+          scanners: "vuln"
           severity: "CRITICAL,HIGH"
           hide-progress: false
           exit-code: "0"
           limit-severities-for-sarif: true
 
       - name: Upload Trivy scan results to GitHub Security tab
-        if: always()
+        if: always() && hashFiles(format('trivy-results-{0}.sarif', matrix.image)) != ''
         uses: github/codeql-action/upload-sarif@95e58e9a2cdfd71adc6e0353d5c52f41a045d225 # v4.35.2
         with:
           sarif_file: "trivy-results-${{ matrix.image }}.sarif"
+          category: "trivy-${{ matrix.image }}"
