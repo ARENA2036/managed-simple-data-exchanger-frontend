@@ -22,7 +22,7 @@ on:
   workflow_dispatch:
     inputs:
       image_tag:
-        description: "Optional frontend Docker image tag. Leave empty to use the current Git SHA"
+        description: "Optional: New Docker image tag for frontend. Leave empty to use the current Git SHA"
         required: false
         type: string
 
