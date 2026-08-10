@@ -78,7 +78,7 @@ jobs:
   #   frontend_image_tag -> image_tag -> current Git SHA
   # =================================================================
   resolve-image-tag:
-    name: Create Frontend Docker Image Tag
+    name: Start Frontend CI Pipeline
     runs-on: ubuntu-latest
 
     outputs:
