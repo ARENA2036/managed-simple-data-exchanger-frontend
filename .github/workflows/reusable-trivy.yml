@@ -89,7 +89,7 @@ jobs:
           persist-credentials: false
 
       - name: Docker Login
-        uses: docker/login-action@v3
+        uses: docker/login-action@82f62b30350188510051171c30470fea9cdd9b88 # v3.7.0
         with:
           registry: ${{ secrets.HBR_REGISTRY }}
           username: ${{ secrets.HBR_USERNAME }}

@@ -20,7 +20,7 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 ---
-  
+
 name: SDE Frontend CI
 
 on:
@@ -202,6 +202,8 @@ jobs:
     if: github.event_name != 'pull_request'
 
     uses: ./.github/workflows/dockerbuild.yml
+    with:
+      image_tag: ${{ needs.resolve-image-tag.outputs.frontend_image_tag }}
     secrets: inherit
 
   # =================================================================
